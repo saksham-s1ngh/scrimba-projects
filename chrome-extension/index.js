@@ -5,8 +5,11 @@ const ulEl = document.querySelector("#ul-el");
 
 inputBtn.addEventListener("click", function () {
   myLeads.push(inputEl.value);
+  localStorage.setItem("myLeads", JSON.stringify(myLeads));
   renderLeads();
   inputEl.value = "";
+
+  console.log(localStorage.getItem("myLeads"));
 });
 
 function renderLeads() {
