@@ -16,7 +16,7 @@ if (leadsFromLocalStorage) {
 deleteBtn.addEventListener("dblclick", function () {
   localStorage.clear();
   myLeads = [];
-  ulEl.textContent = "";
+  renderLeads();
 });
 
 inputBtn.addEventListener("click", function () {
