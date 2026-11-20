@@ -4,7 +4,6 @@ const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.querySelector("#ul-el");
 const deleteBtn = document.querySelector("#delete-btn");
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
-// 1. Grab the SAVE TAB button and store it in a tabBtn variable
 const tabBtn = document.querySelector("#tab-btn");
 
 if (leadsFromLocalStorage) {
@@ -12,13 +11,12 @@ if (leadsFromLocalStorage) {
   render(myLeads);
 }
 
-const tabs = [{ url: "https://www.linkedin.com/in/per-harald-borgen/" }];
-
-// 2. Listen for clicks on tabBtn. Log Per's LinkedIn URL to the console
 tabBtn.addEventListener("click", () => {
-  myLeads.push(tabs[0].url);
-  localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  render(myLeads);
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    myLeads.push(tabs[0].url);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    render(myLeads);
+  });
 });
 
 function render(leads) {
