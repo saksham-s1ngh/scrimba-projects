@@ -4,6 +4,7 @@ import {
   ref,
   push,
   onValue,
+  remove,
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
 const firebaseConfig = {
@@ -27,14 +28,16 @@ function render(leads) {
   ulEl.innerHTML = listItems;
 }
 
-// Challenge: Log out a snapshot of your database when a new value is added to it
 onValue(referenceInDB, function (snapshot) {
   const snapshotValues = snapshot.val();
   const leads = Object.values(snapshotValues);
   render(leads);
 });
 
-deleteBtn.addEventListener("dblclick", function () {});
+deleteBtn.addEventListener("dblclick", function () {
+  // Challenge: Import the 'remove' function and call it here to delete the leads
+  remove(referenceInDB);
+});
 
 inputBtn.addEventListener("click", function () {
   push(referenceInDB, inputEl.value);
