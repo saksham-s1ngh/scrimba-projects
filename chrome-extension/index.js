@@ -35,8 +35,9 @@ onValue(referenceInDB, function (snapshot) {
 });
 
 deleteBtn.addEventListener("dblclick", function () {
-  // Challenge: Import the 'remove' function and call it here to delete the leads
   remove(referenceInDB);
+  // Challenge: Clear all the leads from ulEl
+  ulEl.innerHTML = "";
 });
 
 inputBtn.addEventListener("click", function () {
