@@ -1,8 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-const firebaseConfig = {};
+const firebaseConfig = {
+  databaseURL: process.env.databaseURL,
+};
 
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 let myLeads = [];
 const inputEl = document.querySelector("#input-el");
