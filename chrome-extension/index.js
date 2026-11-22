@@ -3,6 +3,7 @@ import {
   getDatabase,
   ref,
   push,
+  onValue,
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
 const firebaseConfig = {
@@ -28,7 +29,9 @@ function render(leads) {
 
 // Challenge: Log out a snapshot of your database when a new value is added to it
 onValue(referenceInDB, function (snapshot) {
-  console.log(snapshot.val());
+  const snapshotValues = snapshot.val();
+  const leads = Object.values(snapshotValues);
+  render(leads);
 });
 
 deleteBtn.addEventListener("dblclick", function () {});
