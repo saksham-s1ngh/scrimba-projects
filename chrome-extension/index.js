@@ -1,33 +1,23 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  push,
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
 const firebaseConfig = {
-  databaseURL: process.env.databaseURL,
+  databaseURL: "https://leads-tracker-app-30a5f-default-rtdb.firebaseio.com/",
 };
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+// Challenge: Create a const called 'referenceInDB' and use the ref function to create a reference called 'leads' in the database
+const referenceInDB = ref(database, "leads");
 
-let myLeads = [];
 const inputEl = document.querySelector("#input-el");
 const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.querySelector("#ul-el");
 const deleteBtn = document.querySelector("#delete-btn");
-const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
-const tabBtn = document.querySelector("#tab-btn");
-
-if (leadsFromLocalStorage) {
-  myLeads = leadsFromLocalStorage;
-  render(myLeads);
-}
-
-tabBtn.addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    myLeads.push(tabs[0].url);
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    render(myLeads);
-  });
-});
 
 function render(leads) {
   let listItems = "";
@@ -37,15 +27,9 @@ function render(leads) {
   ulEl.innerHTML = listItems;
 }
 
-deleteBtn.addEventListener("dblclick", function () {
-  localStorage.clear();
-  myLeads = [];
-  render(myLeads);
-});
+deleteBtn.addEventListener("dblclick", function () {});
 
 inputBtn.addEventListener("click", function () {
-  myLeads.push(inputEl.value);
-  localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  render(myLeads);
+  push(referenceInDB, inputEl.value);
   inputEl.value = "";
 });
