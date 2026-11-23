@@ -1,11 +1,16 @@
 # Getting Started
+
 Install the dependencies and run the project
+
 ```
 npm install
 npm start
 ```
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/128c81da-9bbf-4c20-b0ab-3d2be79069ea/deploy-status)](https://app.netlify.com/projects/leads-tracker-scrimba-app/deploys)
+
 Head over to https://vitejs.dev/ to learn more about configuring vite
+
 ## About Scrimba
 
 At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
