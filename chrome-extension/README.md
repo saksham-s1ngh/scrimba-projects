@@ -3,8 +3,8 @@
 Install the dependencies and run the project
 
 ```
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/128c81da-9bbf-4c20-b0ab-3d2be79069ea/deploy-status)](https://app.netlify.com/projects/leads-tracker-scrimba-app/deploys)
